@@ -1,16 +1,15 @@
 const Model = require('./model');
 
 function addMessage(message){
-  // list.push(message);
     const myMessage = new Model(message);
     myMessage.save();
 }
 
-async function getMessage(filterUser){
+async function getMessage(filterChat){
  return new Promise ((resolve, reject)=>{
    let filter= {};
-   if(filterUser!==null){
-     filter={user: filterUser};
+   if(filterChat!==null){
+     filter={chat: filterChat};
    }
    Model.find(filter)
    .populate('user')
@@ -37,7 +36,6 @@ async function updateText(id, message){
   foundMessage.message = message;
   const newMessage = await foundMessage.save();
   return newMessage;
-
 }
 
 module.exports = {
