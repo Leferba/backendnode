@@ -2,12 +2,15 @@ const express =require ('express');
 const app = express();
 const server=require('http').Server(app);
 
+const cors = require('cors');
 const bodyParser = require ('body-parser');
 const socket = require('./socket');
 const db = require('./db');
 const router = require('./network/routes'); 
 
 db('mongodb+srv://leninbautista:ci-Bf2pKajUxU&M@cluster0-dmwha.mongodb.net/test?retryWrites=true&w=majority');
+
+app.use(cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
